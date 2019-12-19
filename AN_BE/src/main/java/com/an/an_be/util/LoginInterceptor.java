@@ -23,24 +23,25 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        PrintWriter out = null ;
-        JSONObject res = new JSONObject();
-        String path = request.getServletPath();
-        //如果未登录则验证访问地址，如果是登陆则放行，否则不予通过
-        String a =  (String)request.getSession().getAttribute("userName");
-        if(request.getSession().getAttribute("userName")==null||request.getSession().getAttribute("userName")==""){
-            if (path.matches("/login")||path.matches("/")||path.matches("/logOut")) {
-                //不需要的拦截直接过
-                return true;
-            } else {
-                res.put("code","401");
-                res.put("msg","登陆状态失效，请重新登录");
-                out = response.getWriter();
-                out.append(res.toString());
-                return false;
-            }
-        }else{
-            return true;
-        }
+//        PrintWriter out = null ;
+//        JSONObject res = new JSONObject();
+//        String path = request.getServletPath();
+//        //如果未登录则验证访问地址，如果是登陆则放行，否则不予通过
+//        String a =  (String)request.getSession().getAttribute("userName");
+//        if(request.getSession().getAttribute("userName")==null||request.getSession().getAttribute("userName")==""){
+//            if (path.matches("/login")||path.matches("/")||path.matches("/logOut")) {
+//                //不需要的拦截直接过
+//                return true;
+//            } else {
+//                res.put("code","401");
+//                res.put("msg","登陆状态失效，请重新登录");
+//                out = response.getWriter();
+//                out.append(res.toString());
+//                return false;
+//            }
+//        }else{
+//            return true;
+//        }
+        return true;
     }
 }

@@ -4,7 +4,7 @@
 
     <select id="findUser" parameterType="user" resultType="user">
         SELECT USER_NAME AS USERNAME,PASSWORD AS PASSWORD
-        FROM an_user
+        FROM  an_user
         WHERE USER_NAME = #{userName}
     </select>
 

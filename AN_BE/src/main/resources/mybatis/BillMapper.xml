@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.an.an_be.mapper.BillMapper">
+    <select id="getAllBill" resultType="anBill">
+        SELECT * from an_bill
+    </select>
+
+    <insert id="addBill" parameterType="anBill">
+        INSERT into  an_bill(money,create_time,bill_type,desc,user_id,state,remain)
+        values (#{money},#{createTime},#{billType},#{desc},#{userId},#{state},#{remain})
+    </insert>
+
+    <update id="updateBill">
+
+    </update>
+
+    <delete id="deleteBill" parameterType="Integer">
+        DELETE FROM an_bill where id = #{id}
+    </delete>
+</mapper>
