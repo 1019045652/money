@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>测试页面</title>
+    <!--<link rel="stylesheet" th:href="@{/layui/css/layui.css}">-->
+    <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css"/>
+</head>
+<body class="layui-layout-body" style="background:  rgb(222, 234, 255);">
+<div class="layui-layout layui-layout-admin" style="width:300px;margin:0 auto;margin-top:200px;padding:45px 30px 45px 30px;background: rgba(255, 255, 255, 0.5);">
+    <form class="layui-form layui-form-pane" action="">
+        <h1 style="width:300px;margin:0 auto;margin-bottom:20px;margin-left:100px;">请登录</h1>
+        <div class="layui-form-item" pane>
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-block">
+                <input id="userName" type="text" name="sex" class="layui-input" onblur="checkUser()">
+            </div>
+        </div>
+        <span id="userText" style="position:relative;top:-15px;left:120px;color:red;display: none;">输入用户名</span>
+        <div class="layui-form-item" pane>
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-block">
+                <input id="password" type="password" name="sex" class="layui-input" onblur="checkPass()">
+            </div>
+        </div>
+        <span id="passText" style="position:relative;top:-15px;left:120px;color:red;display: none;">输入密码</span>
+
+    </form>
+    <button onclick="loginSubmit()" class="layui-btn layui-btn-normal" style="width:300px;">登录</button>
+</div>
+<!--<script src="/layui/layui.js"></script>-->
+<script src="https://www.layuicdn.com/layui/layui.js"></script>
+<script type="text/javascript" src="https://unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+<script src="/js/xss.min.js"></script>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+
+    function checkUser() {
+        if($('#userName').val() == ""||$('#userName').val()==null){
+            $('#userText').css("display","block")
+        }else{
+            $('#userText').css("display","none")
+        }
+    }
+    function checkPass() {
+        if($('#password').val() == ""||$('#password').val()==null){
+            $('#passText').css("display","block")
+        }else{
+            $('#passText').css("display","none")
+        }
+    }
+
+    function loginSubmit() {
+        if($('#userName').val() == ""||$('#userName').val()==null||$('#password').val() == ""||$('#password').val()==null){
+            layui.use('layer', function(){
+                layer.msg('先输入账户密码', {
+                    time: 1000, //1.5s后自动关闭
+                });
+            })
+            return;
+        }else{
+            var param = {userName:$('#userName').val(),password:$('#password').val()};
+            //部署环境
+            // $.ajax({
+            //     type:"POST",
+            //     url:'http://115.159.191.133:8081/login',
+            //     data:JSON.stringify(param),
+            //     contentType: "application/json;charset-UTF-8",
+            //     success:function (res){
+            //        if(res.code == 200){
+            //            window.location.href="http://115.159.191.133:8081/toRead";
+            //        }else[]
+            //         layui.use('layer', function(){
+            //             layer.msg(res.msg, {
+            //                 time: 1000, //1.5s后自动关闭
+            //             });
+            //         })
+            //     }
+            // })
+            //开发环境
+            $.ajax({
+                type:"POST",
+                url:'http://localhost:8081/login',
+                data:JSON.stringify(param),
+                contentType: "application/json;charset-UTF-8",
+                success:function (res){
+                    if(res.code == 200){
+                        window.location.href="http://localhost:8081/toRead";
+                    }else[]
+                    layui.use('layer', function(){
+                        layer.msg(res.msg, {
+                            time: 1000, //1.5s后自动关闭
+                        });
+                    })
+                }
+            })
+        }
+    }
+
+</script>
+</body>
+</html>

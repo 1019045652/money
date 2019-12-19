@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>浏览博客</title>
+    <!--<link rel="stylesheet" th:href="@{/layui/css/layui.css}">-->
+    <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css"/>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--公共首部栏-->
+    <div th:replace="common/header::header"></div>
+
+    <!--内容区域-->
+    <div class="layui-body" style="background: rgb(247, 247, 247);">
+        <div id="header"></div>
+        <div style="padding:50px;">
+            <!--在此处遍历文章列表-->
+
+            <div th:each="blog,stat : ${blogList}" >
+                <div style="margin-left: 380px;width:600px;margin-bottom: 10px;padding:20px;background: rgb(255, 255, 255);">
+                    <div style="padding:5px 0px 0px 15px;font-size:15px;" >
+                        <a  th:text="${blog.title}" style="cursor:pointer;font-size:17px;font-weight: 600;;" th:onclick="readBlog([[${blog.blogId}]])"></a>
+                    </div>
+                    <div style="background: rgb(219, 219, 219);width: 100%;height: 1px;margin: 10px 0px 10px 0px;"></div>
+                    <div th:utext="${blog.text}" style="padding:0 0 0px 15px;margin:0px 15px 15px 0px;font-size:14px;white-space:nowrap;text-overflow:ellipsis;word-break:break-all;overflow:hidden;">
+                    </div>
+                    <div style="padding:0 0 0 15px;font-size:13px;">
+                       于 <span th:utext="${#dates.format(blog.createDate)}" style="color:lightseagreen"></span> 发布
+                        <div class="layui-btn-group" style="margin-left:200px;">
+                            <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+                                <i class="layui-icon">&#xe654;</i>
+                            </button>
+                            <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+                                <i class="layui-icon">&#xe642;</i>
+                            </button>
+                            <button th:onclick="deleteBlog()" type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+                                <i class="layui-icon">&#xe640;</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div><a href="#header" style="position:fixed;left:1300px;top:800px;">返回顶部</a></div>
+
+    </div>
+
+
+</div>
+<!--<script src="/layui/layui.js"></script>-->
+<script src="https://www.layuicdn.com/layui/layui.js"></script>
+<script type="text/javascript" src="https://unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+<script src="/js/xss.min.js"></script>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+    function readBlog(blogId){
+        //获取到了文章id
+    }
+
+    function  deleteBlog(id) {
+        layui.use('layer', function() {
+            layer.confirm('确认要删除这条博客？', {
+                btn: ['返回', '确认'] //可以无限个按钮
+            }, function (index, layero) {
+                alert("queren1")
+            }, function (index) {
+                //按钮【按钮二】的回调
+            });
+        })
+    }
+
+
+</script>
+</body>
+</html>

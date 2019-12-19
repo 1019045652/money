@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.an.an_be.mapper.BlogMapper">
+    <insert id="saveBlog" parameterType="blog">
+        INSERT INTO an_blog(blogId,title,text ,createDate,userName)
+        VALUES (#{blogId},#{title},#{text}, #{createDate},#{userName})
+    </insert>
+    <select id="findBlog" parameterType="blog" resultType="blog">
+        select * from an_blog
+        ORDER BY createDate DESC
+    </select>
+    <select id="findBlogById" parameterType="blog" resultType="blog">
+        SELECT * FROM an_blog
+        WHERE blogId = #{blogId}
+    </select>
+</mapper>

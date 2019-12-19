@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>测试页面</title>
+    <!--<link rel="stylesheet" th:href="@{/layui/css/layui.css}">-->
+    <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css"/>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div th:replace="common/header::header"></div>
+    <div class="layui-body" style="background: rgb(222, 234, 255); ">
+        <div id="planBody" style="padding:30px;">
+            <div class="planListBody" style="width: 400px;margin-left: 500px;border-radius:2px;padding:0 0 15px 0;word-wrap:break-word;">
+                <button onclick="showCreatePlan()" class="layui-btn layui-btn-normal">新建计划</button>
+            </div>
+            <!-- 卡片区域 -->
+            <div class="planListBody" style="width: 400px;background: white;margin-left: 500px;border-radius:2px;padding:0 0 15px 0;word-wrap:break-word;">
+                <div style="padding:10px 0px 0px 15px;">
+                    标题
+                </div>
+                <div style="background: rgb(219, 219, 219);width: 100%;height: 1px;margin: 10px 0px 10px 0px;"></div>
+                <div style="padding:0px 0px 0px 15px;margin:0px 15px 15px 0px;">
+                    测试内容如那几打开监督卡监督卡角度来看家啊大家啊的急啊看的家啊大家啊空间打开的急啊卡的
+                </div>
+            </div>
+        </div>
+        <div class="createPlanBody" style="display: none; width: 500px;margin-left: 400px;background: #FCFCFC;padding:50px;">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">计划标题</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="planTitle" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">完成时间</label>
+                    <div class="layui-input-block">
+                    <input type="text" class="layui-input" id="finishTime" placeholder="请选择时间">
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">文本域</label>
+                    <div class="layui-input-block">
+                        <textarea id="planContent" name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button onclick="savePlan()" class="layui-btn" >立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        <button onclick="cancelPlanList()" type="button" class="layui-btn layui-btn-primary">返回列表</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<!--<script src="/layui/layui.js"></script>-->
+<script src="https://www.layuicdn.com/layui/layui.js"></script>
+<script type="text/javascript" src="https://unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+<script src="/js/xss.min.js"></script>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+    layui.use('laydate', function() {
+        var laydate = layui.laydate;
+        //日期时间选择器
+        laydate.render({
+            elem: '#finishTime'
+            ,type: 'datetime'
+        });
+    })
+    function toWrite(){
+        window.location.href="http://115.159.191.133:8081/";
+    }
+    function showCreatePlan() {
+        $('.createPlanBody').css("display","block");
+        $('.planListBody').css("display","none");
+    }
+    function cancelPlanList() {
+        $('.planListBody').css("display","block");
+        $('.createPlanBody').css("display","none");
+    }
+    function savePlan(){
+        var param = {
+            "planTitle":$('#planTitle').val(),
+            "planContent":$('#planContent').val(),
+            "planFinishTime":$('#finishTime').val(),
+        }
+        $.ajax({
+            type:"POST",
+            url:"http://localhost:8081/savePlan",
+            data:param,
+            success:function (result) {
+                console.log(result)
+                layui.use('layer', function(){
+                    layer.msg('发布成功', {
+                        time: 1000, //1s后自动关闭
+                    });
+                })
+                cancelPlanList();
+            }
+
+        })
+    }
+</script>
+</body>
+</html>

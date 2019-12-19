@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.springframework.org/schema/data/jaxb">
+
+<div th:fragment="header">
+    <div class="layui-header">
+        <div class="layui-logo"><h1>装13基地</h1></div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="javaScript:;" onclick=" window.location.href='http://115.159.191.133:8081/toRead'">控制台</a></li>
+            <li class="layui-nav-item"><a href="">日程管理</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">计划系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">发布计划</a></dd>
+                    <dd><a href="javaScript:;" onclick=" window.location.href='http://localhost:8081/toPlan'">浏览计划</a></dd>
+                    <dd><a href="javaScript:;" onclick=" window.location.href=''">配置管理</a></dd>
+
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">博客系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javaScript:;" onclick=" window.location.href='http://115.159.191.133:8081/toRead'">浏览博客</a></dd>
+                    <dd><a href="javaScript:;" onclick=" window.location.href='http://115.159.191.133:8081/toWriteBlog'">发布博客</a></dd>
+                    <dd><a href="javaScript:;" onclick=" window.location.href=''">配置管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    贤心
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="javascript:;" onclick=" window.location.href='http://115.159.191.133:8081/logOut'">退了</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">装逼记录</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">入狱记录</a></dd>
+                        <dd><a href="javascript:;">骚话记录</a></dd>
+                        <dd><a href="javascript:;">裸聊记录</a></dd>
+                        <dd><a href="">jj动图</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">嫖娼</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">嫖娼被抓</a></dd>
+                        <dd><a href="javascript:;">jj爆炸</a></dd>
+                        <dd><a href="">什么玩意儿</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">妓院</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © anbaba.com -- 版权所有
+    </div>
+</div>
