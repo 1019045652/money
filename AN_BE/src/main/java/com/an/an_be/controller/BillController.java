@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 /**
  * @description:
  * @Author zhangan
@@ -26,6 +28,21 @@ public class BillController {
         JSONObject result = new JSONObject();
         try{
             return new Result(200,"操作成功",true, billService.getAllBill());
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(404,"系统错误",false);
+        }
+    }
+
+    /**
+     * 获取所有账单列表
+     * */
+    @GetMapping(value="/getBillByCondition")
+    public Result getBillByCondition(Map<String,Object> param){
+
+        try{
+            return new Result(200,"操作成功",true, billService.getBillByCondition(param));
 
         }catch (Exception e){
             e.printStackTrace();

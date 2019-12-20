@@ -4,17 +4,30 @@
     <select id="getAllBill" resultType="anBill">
         SELECT * from an_bill
     </select>
-
+    <!-- 插入接口 -->
     <insert id="addBill" parameterType="anBill">
         INSERT into  an_bill(money,create_time,bill_type,desc,user_id,state,remain)
         values (#{money},#{createTime},#{billType},#{desc},#{userId},#{state},#{remain})
     </insert>
-
+    <!-- 更新账单接口 -->
     <update id="updateBill">
 
     </update>
-
+    <!-- 删除接口 -->
     <delete id="deleteBill" parameterType="Integer">
         DELETE FROM an_bill where id = #{id}
     </delete>
+    <!-- 条件查询接口 -->
+    <select id="getBillByCondition" parameterType="java.util.Map" resultType="anBill">
+        SELECT * FROM an_bill WHERE 1 = 1
+        <if test="billType != null and billType != '' ">
+            and bill_type = #{billType}
+        </if>
+        <if test="startDate != null and startDate != '' ">
+            and DATE_FORMAT(create_time,'%Y%m%d') &gt;= #{startDate}
+        </if>
+        <if test="endDate != null and endDate != '' ">
+            and DATE_FORMAT(create_time,'%Y%m%d') &lt;=  #{endDate}
+        </if>
+    </select>
 </mapper>

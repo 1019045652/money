@@ -3,6 +3,7 @@ package com.an.an_be.mapper;
 import com.an.an_be.entity.AnBill;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description:
@@ -18,5 +19,7 @@ public interface BillMapper {
     List<AnBill> getAllBill()throws Exception;
 
     void updateBill(AnBill entity)throws Exception;
+
+    List<AnBill> getBillByCondition(Map<String,Object> param)throws Exception;
 
 }

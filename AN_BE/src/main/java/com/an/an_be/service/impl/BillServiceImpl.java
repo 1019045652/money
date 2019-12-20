@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description: 账单service
@@ -33,5 +34,9 @@ public class BillServiceImpl implements BillService {
 
     public List<AnBill> getAllBill() throws Exception {
         return  billMapper.getAllBill();
+    }
+
+    public List<AnBill> getBillByCondition(Map<String,Object> param)throws Exception{
+        return billMapper.getBillByCondition(param);
     }
 }
