@@ -1,19 +1,12 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import AddBill from '@/components/bill/addBill.vue'
-
-Vue.use(Router)
-
-export default new Router({
+export default new VueRouter({
     routes: [{
         path: '/',
         name: 'HelloWorld',
-        component: HelloWorld,
+        component: resolve => require(['@/components/main'], resolve),
         children: [{
             path: '/addBill',
             name: 'addBill',
-            component: AddBill,
+            component: resolve => require(['@/components/bill/addBill.vue'], resolve)
         }]
     }]
 })
