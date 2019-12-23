@@ -18,6 +18,7 @@ module.exports = {
     externals: {
         'vue': 'Vue',
         'vue-router': 'VueRouter',
+        "echarts": "echarts"
     },
     output: {
         path: config.build.assetsRoot,
