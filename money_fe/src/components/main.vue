@@ -33,19 +33,36 @@
           </a-sub-menu>
           <a-sub-menu key="sub2">
             <span slot="title">
-              <a-icon type="laptop"/>报表信息
+              <a-icon type="laptop"/>账单信息
             </span>
-            <a-menu-item key="5">报表一</a-menu-item>
-            <a-menu-item key="6">报表二</a-menu-item>
-            <a-menu-item key="7">报表三</a-menu-item>
+            <a-menu-item key="5">所有账单</a-menu-item>
+            <a-menu-item key="6">账单分类</a-menu-item>
+            <a-menu-item key="7">资产规划</a-menu-item>
           </a-sub-menu>
           <a-sub-menu key="sub3">
             <span slot="title">
+              <a-icon type="notification"/>报表信息
+            </span>
+            <a-menu-item key="9">资金报表</a-menu-item>
+            <a-menu-item key="10">行程报表</a-menu-item>
+            <a-menu-item key="11">保留菜单</a-menu-item>
+          </a-sub-menu>
+        
+          <a-sub-menu key="sub4">
+            <span slot="title">
+              <a-icon type="notification"/>日程信息
+            </span>
+            <a-menu-item key="13">系统设置</a-menu-item>
+            <a-menu-item key="14">参数设置</a-menu-item>
+            <a-menu-item key="15">数据设置</a-menu-item>
+          </a-sub-menu>
+             <a-sub-menu key="sub5">
+            <span slot="title">
               <a-icon type="notification"/>系统设置
             </span>
-            <a-menu-item key="9">系统设置</a-menu-item>
-            <a-menu-item key="10">参数设置</a-menu-item>
-            <a-menu-item key="11">数据设置</a-menu-item>
+            <a-menu-item key="17">参数设置</a-menu-item>
+            <a-menu-item key="18">界面设置</a-menu-item>
+            <a-menu-item key="19">保留菜单</a-menu-item>
           </a-sub-menu>
         </a-menu>
       </a-layout-sider>
@@ -70,7 +87,7 @@ export default {
   data() {
     return {
       collapsed: false,
-      rootSubmenuKeys: ['sub1', 'sub2', 'sub3'],
+      rootSubmenuKeys: ['sub1', 'sub2', 'sub3','sub4'],
       openKeys: [],
     };
   },
