@@ -2,30 +2,23 @@
   <a-layout id="components-layout-demo-top-side-2">
     <a-layout-header class="header" style="padding-left:20px;">
       <span style="float:left;color:white;">测试logo</span>
-      <a-menu
-        theme="dark"
-        mode="horizontal"
-        :defaultSelectedKeys="['2']"
-        :style="{ lineHeight: '64px' }"
-      > 
+      <!-- <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
         <a-menu-item key="1" @click="addBill()" style="margin-left:126px;">第一个菜单</a-menu-item>
         <a-menu-item key="2">nav 2</a-menu-item>
         <a-menu-item key="3">nav 3</a-menu-item>
-      </a-menu>
+      </a-menu> -->
     </a-layout-header>
     <a-layout>
       <a-layout-sider width="200" style="background: #fff">
         <a-menu
           mode="inline"
-          :defaultSelectedKeys="['1']"
-          :defaultOpenKeys="['sub1']"
           :style="{ height: '100%', borderRight: 0 }"
           @openChange="onOpenChange"
           :openKeys="openKeys"
         >
           <a-sub-menu key="sub1">
             <span slot="title">
-              <a-icon type="user"/>账户设置
+              <a-icon type="safety-certificate" theme="filled"/>账户设置
             </span>
             <a-menu-item key="1">资产信息</a-menu-item>
             <a-menu-item key="2">二二二</a-menu-item>
@@ -33,32 +26,31 @@
           </a-sub-menu>
           <a-sub-menu key="sub2">
             <span slot="title">
-              <a-icon type="laptop"/>账单信息
+              <a-icon type="pie-chart" theme="filled"/>账单信息
             </span>
-            <a-menu-item key="5">所有账单</a-menu-item>
+            <a-menu-item key="5" @click="addBill()">账单列表</a-menu-item>
             <a-menu-item key="6">账单分类</a-menu-item>
             <a-menu-item key="7">资产规划</a-menu-item>
           </a-sub-menu>
           <a-sub-menu key="sub3">
             <span slot="title">
-              <a-icon type="notification"/>报表信息
+              <a-icon type="pie-chart" theme="filled"/>报表信息
             </span>
-            <a-menu-item key="9">资金报表</a-menu-item>
+            <a-menu-item key="9" @click="toPayChart()">消费报表</a-menu-item>
             <a-menu-item key="10">行程报表</a-menu-item>
             <a-menu-item key="11">保留菜单</a-menu-item>
           </a-sub-menu>
-        
           <a-sub-menu key="sub4">
             <span slot="title">
-              <a-icon type="notification"/>日程信息
+              <a-icon type="schedule" theme="filled"/>日程信息
             </span>
             <a-menu-item key="13">系统设置</a-menu-item>
             <a-menu-item key="14">参数设置</a-menu-item>
             <a-menu-item key="15">数据设置</a-menu-item>
           </a-sub-menu>
-             <a-sub-menu key="sub5">
+          <a-sub-menu key="sub5">
             <span slot="title">
-              <a-icon type="notification"/>系统设置
+              <a-icon type="setting" theme="filled"/>系统设置
             </span>
             <a-menu-item key="17">参数设置</a-menu-item>
             <a-menu-item key="18">界面设置</a-menu-item>
@@ -87,8 +79,8 @@ export default {
   data() {
     return {
       collapsed: false,
-      rootSubmenuKeys: ['sub1', 'sub2', 'sub3','sub4'],
-      openKeys: [],
+      rootSubmenuKeys: ["sub1", "sub2", "sub3", "sub4","sub5"],
+      openKeys: []
     };
   },
   components: {
@@ -100,21 +92,26 @@ export default {
     "a-sub-menu": Menu.SubMenu,
     "a-menu-item": Menu.Item,
     "a-breadcrumb": Breadcrumb,
-    "a-breadcrumb-item": Breadcrumb.Item,  
-    "a-icon": Icon,
+    "a-breadcrumb-item": Breadcrumb.Item,
+    "a-icon": Icon
   },
   methods: {
     addBill() {
       this.$router.push("/addBill");
     },
-     onOpenChange(openKeys) {
-        const latestOpenKey = openKeys.find(key => this.openKeys.indexOf(key) === -1);
-        if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-          this.openKeys = openKeys;
-        } else {
-          this.openKeys = latestOpenKey ? [latestOpenKey] : [];
-        }
-      },
+    toPayChart() {
+      this.$router.push("/payChart");
+    },
+    onOpenChange(openKeys) {
+      const latestOpenKey = openKeys.find(
+        key => this.openKeys.indexOf(key) === -1
+      );
+      if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+        this.openKeys = openKeys;
+      } else {
+        this.openKeys = latestOpenKey ? [latestOpenKey] : [];
+      }
+    }
   }
 };
 </script>
